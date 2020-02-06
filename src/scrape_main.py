@@ -22,6 +22,7 @@ locations = [['Boston','MA'],
         ['Chicago','IL'],
         ['Washington','DC']]
 
-# scrape_urls(locations,interim_data_dir)
+
+scrape_urls(locations,interim_data_dir)
 
 scrape_listings('urls.pkl',interim_data_dir,processed_data_dir)
