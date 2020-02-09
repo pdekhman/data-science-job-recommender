@@ -82,12 +82,12 @@ new_stop_words = ['experience','years','work','learning','data','science','race'
      ,'information','masters','applied','information','knowledge']
 
 
-def text_process(text,extra_stopwords,punctuation):
+def text_process(text,extra_stopwords,punctuation,pos):
     punctuation = string.punctuation
     final_stopwords =  list(STOP_WORDS)+new_stop_words
     if text !=None:
         mytokens = [word for word in text if word.is_digit != True and word.is_punct != True]
-        mytokens = [word for word in mytokens if word.pos_ not in ['VERB','ADV','ADJ','ADP','DET','NOUN']]
+        mytokens = [word for word in mytokens if word.pos_ not in pos]
         mytokens = [word.lemma_.lower().strip() if word.lemma_ != "-PRON-" else word.lower_ for word in mytokens]
         mytokens = [word for word in mytokens if word not in final_stopwords and word not in punctuation and '@' not in word and 'http' not in word]
         mytokens = " ".join([i for i in mytokens])
@@ -121,3 +121,43 @@ def tfidf_vectorizer_display(processed_text,topics=5,max_features = 2000, max_o 
     display_topics(nmf_model,tfidf_vectorizer.get_feature_names(),10)
 
     return document_topic_matrix
+
+def tsne_viz(doc_topic_matrix,topic_df):
+    tsne = TSNE(n_components = 2,random_state=0)
+    top_2d_tsne = tsne.fit_transform(doc_topic_matrix)
+
+    plt.figure(figsize=(15,8))
+    ax = sns.scatterplot(x=top_2d_tsne[:,0],y=top_2d_tsne[:,1],hue = topic_df.Topic)
+    plt.setp(ax.get_legend().get_texts(), fontsize='14') # for legend text
+    plt.setp(ax.get_legend().get_title(), fontsize='24') # for legend title
+    plt.title("TSNE 2-Dimension Topic Visualization",fontsize = '20')
+    plt.savefig("tsne.svg",format='svg')
+    plt.show()
+
+def pca_viz(doc_topic_matrix,topic_df):
+    pca = PCA(n_components=2)
+    pca.fit(doc_topic_matrix)
+    top_2d_pca = pca.transform(doc_topic_matrix)
+
+    plt.figure(figsize=(15,8))
+    ax = sns.scatterplot(x=top_2d_pca[:,0],y=top_2d_pca[:,1],hue = topic_df.Topic)
+    plt.setp(ax.get_legend().get_texts(), fontsize='16') # for legend text
+    plt.setp(ax.get_legend().get_title(), fontsize='26') # for legend title
+    plt.title('PCA 2-Dimension Topic Visualization', fontsize = '20')
+    plt.savefig("pca.svg",format='svg')
+    plt.show()
+
+
+
+
+def get_recommends(itemID, VT,df, num_recom=3):
+    recs = []
+    for item in range(VT.shape[0]):
+        if item != itemID:
+            recs.append([item,np.dot(VT[itemID],VT[item])])
+    final_rec = [i[0] for i in sorted(recs,key=lambda x: x[1],reverse=True)]
+    
+    print("You selected : " + df.iloc[itemID,0] + " at " + df.iloc[itemID,1] + " in " +df.iloc[itemID,3] + '\n'
+           + '\n'+"You would also like: " + '\n')
+    for i in final_rec[:num_recom]:
+        print(df.iloc[i,0]+ " at " + df.iloc[i,1] +" in " +df.iloc[i,3] + '\n')
