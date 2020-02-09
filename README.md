@@ -53,5 +53,6 @@ Topic model job listings for data science jobs to pin point exactly the competen
 --------------
 The term "data science" has become somewhat of a catch-all recently. When used, it could refer to responsiblities closer to "Data Engineer" or "Machine Learning Engineer", and a variety of other specializations. Using the text from ~ 4800 data science job listings, I produced topics based on specific skills to get a more accurate picture of the competencies the listing actually requires. I also created a recommendation system using the derived topics
 
+**Please see [Data Science Job Topic Modeling and Recommendation](https://github.com/pdekhman/data-science-job-recommender/blob/master/Data%20Science%20Job%20Topic%20Modeling%20and%20Recommendation.ipynb) for presentation and findings**
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
