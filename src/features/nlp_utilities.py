@@ -36,9 +36,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
-pd.set_option('display.max_rows', 500)
-pd.set_option('display.max_rows', 500)
-
 def load_clean_nlp(path,data,text_column):
     data = open(path+data,"rb")
     listings = pickle.load(data)
@@ -105,3 +102,22 @@ def display_topics(model, feature_names, no_top_words, topic_names=None):
         else:
             print("\nTopic: '",topic_names[ix],"'")
         print(", ".join([feature_names[i] for i in topic.argsort()[:-no_top_words - 1:-1]]))
+
+
+def count_vectorizer_display(processed_text,topics=5, max_o = .8, min_o = 5):
+    vectorizer = CountVectorizer(ngram_range=(1,2),stop_words = 'english',max_df = max_o,min_df = min_o)
+    doc_word_matrix = vectorizer.fit_transform(processed_text)
+    nmf_model= NMF(topics)
+    document_topic_matrix = nmf_model.fit_transform(doc_word_matrix)
+    display_topics(nmf_model,vectorizer.get_feature_names(),10)
+
+    return document_topic_matrix
+
+def tfidf_vectorizer_display(processed_text,topics=5,max_features = 2000, max_o = .8, min_o = 5):
+    tfidf_vectorizer = TfidfVectorizer(ngram_range=(1,3),binary =False,stop_words = 'english',max_features=2000,max_df = max_o,min_df = min_o)
+    doc_word_matrix = tfidf_vectorizer.fit_transform(processed_text)
+    nmf_model= NMF(topics)
+    document_topic_matrix = nmf_model.fit_transform(doc_word_matrix)
+    display_topics(nmf_model,tfidf_vectorizer.get_feature_names(),10)
+
+    return document_topic_matrix
