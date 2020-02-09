@@ -1,13 +1,14 @@
-data-science-job-recommender
+Data Science Job Recommender
 ==============================
 
-Topic model and recommend data science job listings from indeed.com
+This project was part of my coursework during Metis Immersive Data Science Bootcamp
+
+**Project Status - Active**
 
 Project Organization
 ------------
 
     ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
     ├── README.md          <- The top-level README for developers using this project.
     ├── data
     │   ├── external       <- Data from third party sources.
@@ -15,43 +16,42 @@ Project Organization
     │   ├── processed      <- The final, canonical data sets for modeling.
     │   └── raw            <- The original, immutable data dump.
     │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
     ├── src                <- Source code for use in this project.
     │   ├── __init__.py    <- Makes src a Python module
     │   │
     │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
+    │   │       └──             scrape_utilities.py
     │   │
     │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.testrun.org
+                └──             nlp_utilities.py
+    │   ├──scrape_main.py
 
 
---------
+**Project Objective**
+--------------
+
+Topic model job listings for data science jobs to pin point exactly the competencies needed
+
+**Methods Used**
+* Exploratory Data Analysis
+* Web Scraping
+* Data Visualization
+* Natural Language Processing
+* Dimensionality Reduction
+
+**Technologies Used**
+* Python 3.7
+* Jupyter Notebooks
+* pandas
+* numpy
+* sklearn
+* spAcy
+* Beautiful Soup
+* Selenium
+
+**Project Overview**
+--------------
+The term "data science" has become somewhat of a catch-all recently. When used, it could refer to responsiblities closer to "Data Engineer" or "Machine Learning Engineer", and a variety of other specializations. Using the text from ~ 4800 data science job listings, I produced topics based on specific skills to get a more accurate picture of the competencies the listing actually requires. I also created a recommendation system using the derived topics
+
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>

@@ -11,9 +11,9 @@ from selenium.webdriver.common.keys import Keys
 from data.scrape_utilities import create_search_url_list, scrape_urls,scrape_listings
 
 #set raw and interim data paths
-raw_data_dir = '/Users/paveldekhman/data-science-job-recommender/data/raw/'
-interim_data_dir= '/Users/paveldekhman/data-science-job-recommender/data/interim/'
-processed_data_dir = '/Users/paveldekhman/data-science-job-recommender/data/processed/'
+raw_data_dir = '~/data-science-job-recommender/data/raw/'
+interim_data_dir= '~/data-science-job-recommender/data/interim/'
+processed_data_dir = '~/data-science-job-recommender/data/processed/'
 
 locations = [['Boston','MA'],
         ['New York','NY'],

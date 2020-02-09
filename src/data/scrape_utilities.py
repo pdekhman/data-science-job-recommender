@@ -160,12 +160,4 @@ def scrape_listings(urls,data_path,output_path):
     return None
 
 
-
-if __name__ == '__main__':
-    locations = [['Boston','MA'],
-            ['New York','NY'],
-            ['San Francisco','CA'],
-            ['Seattle','WA'],
-            ['Chicago','IL'],
-            ['Washington','DC']]
   
